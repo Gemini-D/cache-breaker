@@ -11,9 +11,11 @@ declare(strict_types=1);
  */
 namespace Gemini\CacheBreaker;
 
+use Gemini\CacheBreaker\Annotation\Breaker;
 use Hyperf\Di\Aop\ProceedingJoinPoint;
+use Throwable;
 
 interface FallbackInterface
 {
-    public function fallback(ProceedingJoinPoint $joinPoint);
+    public function fallback(ProceedingJoinPoint $joinPoint, Throwable $throwable, Breaker $breaker);
 }

@@ -11,11 +11,14 @@ declare(strict_types=1);
  */
 namespace Gemini\CacheBreaker\Fallback;
 
+use Gemini\CacheBreaker\Annotation\Breaker;
+use Gemini\CacheBreaker\FallbackInterface;
 use Hyperf\Di\Aop\ProceedingJoinPoint;
+use Throwable;
 
 class DefaultFallback implements FallbackInterface
 {
-    public function fallback(ProceedingJoinPoint $joinPoint)
+    public function fallback(ProceedingJoinPoint $joinPoint, Throwable $throwable, Breaker $breaker)
     {
         return $joinPoint->processOriginalMethod();
     }
