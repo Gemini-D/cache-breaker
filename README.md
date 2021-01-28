@@ -1,5 +1,13 @@
-# component-creater
+# CacheBreaker
+
+![PHPUnit](https://github.com/Gemini-D/cache-breaker/workflows/PHPUnit/badge.svg)
+
+为 hyperf/cache 扩展熔断能力
 
 ```
-composer create-project hyperf/component-creater
+composer require gemini/cache-breaker
 ```
+
+## 使用
+
+
