@@ -17,5 +17,5 @@ use Throwable;
 
 interface FallbackInterface
 {
-    public function fallback(ProceedingJoinPoint $joinPoint, Throwable $throwable, Breaker $breaker);
+    public function fallback(ProceedingJoinPoint $joinPoint, Throwable $throwable, ?Breaker $breaker);
 }

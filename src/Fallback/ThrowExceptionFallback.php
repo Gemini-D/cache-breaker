@@ -14,17 +14,12 @@ namespace Gemini\CacheBreaker\Fallback;
 use Gemini\CacheBreaker\Annotation\Breaker;
 use Gemini\CacheBreaker\FallbackInterface;
 use Hyperf\Di\Aop\ProceedingJoinPoint;
-use RedisException;
 use Throwable;
 
-class DefaultFallback implements FallbackInterface
+class ThrowExceptionFallback implements FallbackInterface
 {
     public function fallback(ProceedingJoinPoint $joinPoint, Throwable $throwable, ?Breaker $breaker)
     {
-        if ($throwable instanceof RedisException) {
-            return $joinPoint->processOriginalMethod();
-        }
-
         throw $throwable;
     }
 }

@@ -13,9 +13,9 @@ namespace Gemini\CacheBreaker\Aspect;
 
 use Gemini\CacheBreaker\Annotation\Breaker;
 use Gemini\CacheBreaker\Fallback\DefaultFallback;
+use Gemini\CacheBreaker\Fallback\ThrowExceptionFallback;
 use Gemini\CacheBreaker\FallbackInterface;
 use Hyperf\Cache\Annotation\Cacheable;
-use Hyperf\Di\Annotation\AnnotationCollector;
 use Hyperf\Di\Aop\AbstractAspect;
 use Hyperf\Di\Aop\ProceedingJoinPoint;
 use Psr\Container\ContainerInterface;
@@ -61,7 +61,8 @@ class CacheableAspect extends AbstractAspect
                 return $fallback->fallback($proceedingJoinPoint, $exception, $annotation);
             }
 
-            throw $exception;
+            $fallback = $this->container->get(ThrowExceptionFallback::class);
+            return $fallback->fallback($proceedingJoinPoint, $exception);
         }
     }
 
